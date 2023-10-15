@@ -31,6 +31,19 @@ ax.set_title('Coordinate Location')
 
 plt.show()
 
+#Step 3: Correlation Matrix
+target_variable = 'Step'
+
+
+correlations = df.corr(method='pearson')[[target_variable]].drop(target_variable)
+
+plt.figure(figsize=(10, 6))
+sns.heatmap(correlations, annot=True, cmap='coolwarm', cbar=False)
+plt.title('Pearson Correlation with Target Variable')
+plt.show()
+
+
+#Step 4: 
 from sklearn.model_selection import train_test_split
 x=df[['X','Y','Z']]
 y=df['Step']
