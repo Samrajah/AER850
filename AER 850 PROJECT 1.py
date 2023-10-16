@@ -122,3 +122,36 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.title("Confusion Matrix")
 plt.show()
+
+#Step 6:
+import joblib
+
+decision_tree_model = DecisionTreeClassifier()
+decision_tree_model.fit(X_train, y_train)
+
+joblib.dump(decision_tree_model, 'decision_tree_model.joblib')
+loaded_model = joblib.load('decision_tree_model.joblib')
+
+new_data_set = [
+    [9.375, 3.0625, 1.51],
+    [6.995, 5.125, 0.3875],
+    [0, 3.0625, 1.93],
+    [9.4, 3, 1.8],
+    [9.4, 3, 1.3]
+]
+
+
+Maintenance_Step= loaded_model.predict(new_data_set)
+
+print("The corresponding Maintenance Step is:",Maintenance_Step)
+
+
+
+
+
+
+
+
+
+
+    
