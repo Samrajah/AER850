@@ -39,7 +39,7 @@ correlations = df.corr(method='pearson')[[target_variable]].drop(target_variable
 
 plt.figure(figsize=(10, 6))
 sns.heatmap(correlations, annot=True, cmap='coolwarm', cbar=False)
-plt.title('Pearson Correlation with Target Variable')
+plt.title('Pearson Correlation with Step')
 plt.show()
 
 
