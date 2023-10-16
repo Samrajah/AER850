@@ -85,5 +85,40 @@ for MLmodel_name, MLmodel in best_MLmodels.items():
     accuracy = accuracy_score(y_test, y_pred)
     print(f'{MLmodel_name} Accuracy: {accuracy}')
 
+#Step 5: 
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
 
-    
+metrics = {}
+
+for MLmodel_name, MLmodel in best_MLmodels.items():
+    y_pred = MLmodel.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, average='weighted')
+    recall = recall_score(y_test, y_pred, average='weighted')
+    f1 = f1_score(y_test, y_pred, average='weighted')
+    metrics[MLmodel_name] = {
+        "Accuracy": accuracy,
+        "Precision": precision,
+        "Recall": recall,
+        "F1 Score": f1
+    }
+
+for MLmodel_name, metric in metrics.items():
+    print(f"Metrics for {MLmodel_name}:")
+    print(f"Accuracy: {metric['Accuracy']:.4f}")
+    print(f"Precision: {metric['Precision']:.4f}")
+    print(f"Recall: {metric['Recall']:.4f}")
+    print(f"F1 Score: {metric['F1 Score']:.4f}")
+    print()
+
+chosen_MLmodel_name = "Decision Tree" 
+chosen_MLmodel = best_MLmodels[chosen_MLmodel_name]
+y_pred = chosen_MLmodel.predict(X_test)
+conf_matrix = confusion_matrix(y_test, y_pred)
+
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", xticklabels=["Negative", "Positive"], yticklabels=["Negative", "Positive"])
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Confusion Matrix")
+plt.show()
