@@ -14,7 +14,7 @@ df = pd.read_csv(file_path)
 #Step 2: Data Visulization
 from mpl_toolkits.mplot3d import Axes3D
 summary_stats = df.describe()
-
+print(summary_stats)
 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
